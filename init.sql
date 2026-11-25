@@ -1,0 +1,14 @@
+CREATE DATABASE IF NOT EXISTS student_db
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_unicode_ci;
+
+USE student_db;
+
+CREATE TABLE IF NOT EXISTS sinh_vien (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ma_sv VARCHAR(255) NOT NULL,
+    ho_ten VARCHAR(255) NOT NULL,
+    toan VARCHAR(255) NOT NULL,
+    van VARCHAR(255) NOT NULL,
+    anh VARCHAR(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

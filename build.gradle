@@ -1,0 +1,50 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.studentudp'
+version = '1.0.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.mysql:mysql-connector-j:8.4.0'
+    implementation 'com.google.code.gson:gson:2.11.0'
+    implementation 'com.formdev:flatlaf:3.5.4'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+    systemProperty 'file.encoding', 'UTF-8'
+}
+
+tasks.register('runServer', JavaExec) {
+    group = 'application'
+    description = 'Runs the UDP Student Management Server GUI'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.studentudp.server.ServerFrame'
+    jvmArgs '-Dfile.encoding=UTF-8'
+}
+
+tasks.register('runClient', JavaExec) {
+    group = 'application'
+    description = 'Runs the UDP Student Management Client GUI'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.studentudp.client.ClientFrame'
+    jvmArgs '-Dfile.encoding=UTF-8'
+}
